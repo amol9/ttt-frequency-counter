@@ -3,6 +3,8 @@ request = require("request")
 url = "https://terriblytinytales.com/test.txt"
 dict = {}
 n = 10
+ret = []
+callback = null
 
 function count(text) {
     var words = text.split(/[\s,\.:\/\?\'\"\-\’@\(\)]/)
@@ -22,6 +24,7 @@ function count(text) {
 }
 
 function top_n() {
+    //ret = []
     var d = {}
     var arr = []
     for (k in dict) {
@@ -30,9 +33,12 @@ function top_n() {
 
     arr.sort((a, b) => b[0] - a[0])
 
+    //var ret = []
     for (var i = 0; i < n; i++) {
         console.log(arr[i][1], arr[i][0])
+        ret.push(arr[i])
     }
+    callback(ret)
 }
 
 function got_file(text) {
@@ -41,6 +47,7 @@ function got_file(text) {
 }
 
 function get_remote_file(url) {
+    dict = {}
     request.get(url, function(error, response, body) {
         if (!error) {
             got_file(body)
@@ -50,9 +57,12 @@ function get_remote_file(url) {
     });
 }
 
-function get_top_n(c) {
+function get_top_n(c, f) {
     n = c
+    callback = f
     get_remote_file(url)
 }
 
-get_top_n(20)
+//get_top_n(20)
+
+module.exports = { get_top_n, ret}
