@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Server: netcat!
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+
+
+{{[["i", 28],["a", 25],["you", 23],["to", 23],["com", 19],["can", 18],["we", 16],["and", 16],["the", 15],["at", 15]]}}
