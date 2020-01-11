@@ -7,12 +7,14 @@ var app = express()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
-app.get("/", function(req, res) {
+app.get("/", async function(req, res) {
     //fc.get_top_n(10)
     //data = fc.ret
-    data = await fc.get_top_n(10)
-    res.setHeader("Content-Type", "application/json")
-    res.end(JSON.stringify(data))
+    fc.get_top_n(10).then(countData => {
+        res.setHeader("Content-Type", "application/json")
+        res.end(JSON.stringify(countData))
+    })
+    
 })
 
 app.post("/topN", function(req, res) {

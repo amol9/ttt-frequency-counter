@@ -6,7 +6,7 @@ n = 10
 ret = []
 callback = null
 
-function count(text) {
+function count(text, resolve) {
     var words = text.split(/[\s,\.:\/\?\'\"\-\’@\(\)]/)
 
     words.forEach(word => {
@@ -20,11 +20,11 @@ function count(text) {
             }
         }
     });
-    top_n()
+    top_n(resolve)
 }
 
-function top_n() {
-    //ret = []
+function top_n(resolve) {
+    ret = []
     var d = {}
     var arr = []
     for (k in dict) {
@@ -38,29 +38,34 @@ function top_n() {
         console.log(arr[i][1], arr[i][0])
         ret.push(arr[i])
     }
-    callback(ret)
+    //callback(ret)
+    resolve(ret)
 }
 
-function got_file(text) {
+function got_file(text, resolve) {
     //console.log(text)
-    count(text)
+    count(text, resolve)
 }
 
-function get_remote_file(url) {
+function get_remote_file(url, resolve) {
     dict = {}
     request.get(url, function(error, response, body) {
         if (!error) {
-            got_file(body)
+            got_file(body, resolve)
         } else {
             console.log(error)
         }
     });
 }
 
-function get_top_n(c, f) {
+async function get_top_n(c, f) {
     n = c
     callback = f
-    get_remote_file(url)
+    return new Promise(function(resolve, reject){
+        get_remote_file(url, function(countData) {
+            resolve(countData)
+        })
+    })
 }
 
 //get_top_n(20)
