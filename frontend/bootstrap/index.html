@@ -13,11 +13,27 @@
             <form id="form">
                 <div class="form-group">
                   <label for="exampleInputEmail1">N:</label>
-                  <input type="text" class="form-control text-right" name="n" aria-describedby="nHelp">
+                  <input type="text" class="form-control text-right" name="n" value="10" aria-describedby="nHelp">
                   <small id="nHelp" class="form-text text-muted">Number of top occuring words required. It needs to be an integer.</small>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
+        </div>
+        
+        <div class="px-5 w-50" id="result-div">
+            <br>
+            <h3>Result</h3>
+            <br>
+
+            <table id="result" class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Word</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </div>
         
     </body>
