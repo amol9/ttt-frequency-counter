@@ -1,1 +1,3 @@
 backend/rocket/target/*
+*.pyc
+*.sqlite3
