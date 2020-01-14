@@ -1,0 +1,13 @@
+[package]
+name = "rust-rocket"
+version = "0.1.0"
+authors = ["Amol <babaiscool@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+openssl = "0.10.26"
+rocket = "0.4.2"
+reqwest = "0.10.1"
+futures = "0.3.1"
