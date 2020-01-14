@@ -19,10 +19,13 @@ app.get("/", async function(req, res) {
 
 app.post("/topN", function(req, res) {
     var n = req.body.n
-    fc.get_top_n(n)
-    data = fc.ret
-    res.setHeader("Content-Type", "application/json")
-    res.end(JSON.stringify(data))
+    console.log("n:", n)
+    fc.get_top_n(n).then(countData => {
+        res.setHeader("Content-Type", "application/json")
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.end(JSON.stringify(countData))
+    })
+   
 })
 
 app.listen(8000)

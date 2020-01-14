@@ -24,7 +24,7 @@ function count(text, resolve) {
 }
 
 function top_n(resolve) {
-    ret = []
+    ret = {"top": []}
     var d = {}
     var arr = []
     for (k in dict) {
@@ -36,7 +36,7 @@ function top_n(resolve) {
     //var ret = []
     for (var i = 0; i < n; i++) {
         console.log(arr[i][1], arr[i][0])
-        ret.push(arr[i])
+        ret.top.push([arr[i][1], arr[i][0]])
     }
     //callback(ret)
     resolve(ret)
